@@ -1,4 +1,4 @@
-# 🔐 Secure Remote Command Execution with GUI and SSL
+🔐 Secure Remote Command Execution with GUI and SSL
 A secure Python-based remote shell system with PyQt5 GUIs for both server and client, SSL-encrypted communication, and support for basic shell commands.
 
 ---
