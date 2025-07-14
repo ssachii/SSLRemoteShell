@@ -17,7 +17,7 @@ class ServerGUI(QWidget):
 
         # Host and Port Entry
         input_layout = QHBoxLayout()
-        self.host_input = QLineEdit("127.0.0.1")
+        self.host_input = QLineEdit("") #insert host ip
         self.port_input = QLineEdit("12345")
         self.start_btn = QPushButton("Start Server")
         input_layout.addWidget(QLabel("Host:"))
