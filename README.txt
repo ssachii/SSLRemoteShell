@@ -1,47 +1,101 @@
-Secure Remote Command Execution with GUI and SSL
-=================================================
+# 🔐 Secure Remote Command Execution with GUI and SSL
 
-How to Run:
------------
+A secure Python-based remote shell system with PyQt5 GUIs for both server and client, SSL-encrypted communication, and support for basic shell commands.
 
-1. Generate SSL Certificate:
-   Run the following in terminal:
-   openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out cert.pem
+---
 
-2. Start the Server:
-   python gui_server.py
+## How to Run
 
-   - The server GUI will open and listen securely on the port you specify in code (default: 12345).
+### 1. Generate SSL Certificate
 
-3. Start the Client:
-   python client.py
+Run the following in your terminal:
 
-   - Enter Host (e.g., 127.0.0.1)
-   - Enter Port (e.g., 12345)
-   - Enter your command (e.g., ls, cd .., mkdir test)
+```bash
+openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out cert.pem
+```
 
-4. Send Commands:
-   - Supports shell commands like `ls`, `cd folder`, `mkdir name`, etc.
-   - Handles errors and displays output with proper formatting.
+This creates a self-signed certificate and key used for secure communication.
 
-Features:
----------
+---
 
-- ✅ Multi-client support (server uses threading).
-- ✅ GUI implemented in PyQt5 for both server and client.
-- ✅ Secure communication with SSL (`ssl.wrap_socket`).
-- ✅ Control/Data separation using custom protocol tags:
-    - Commands sent as: `CTRL:command`
-    - Responses received as: `DATA:output`
-- ✅ Persistent working directory for `cd` commands.
-- ✅ Real-time logs shown in server GUI for monitoring.
-- ✅ No third-party socket library used, only `socket`, `threading`, `ssl`, and `subprocess`.
+### 2. Start the Server
 
-Files Description:
-------------------
+```bash
+python gui_server.py
+```
 
-- `client.py`       → Secure GUI client for sending shell commands.
-- `gui_server.py`   → Server GUI that initializes the secure threaded server.
-- `server.py`       → Core server logic (sockets, command execution, protocol handling).
-- `cert.pem`        → SSL certificate (self-signed).
-- `key.pem`         → SSL private key.
+- Launches the server GUI.
+- Listens securely on the specified port (default: `12345`).
+
+---
+
+### 3. Start the Client
+
+```bash
+python client.py
+```
+
+- Enter the **Host** (e.g., `127.0.0.1`)
+- Enter the **Port** (e.g., `12345`)
+- Enter a shell command (e.g., `ls`, `cd ..`, `mkdir test`)
+
+---
+
+### 4. Send Commands
+
+- Supports basic shell commands like:
+  - `ls`, `cd folder`, `mkdir name`, etc.
+- Handles errors and displays output with proper formatting.
+
+---
+
+## Features
+
+- Multi-client support using Python's `threading`
+- GUI for both server and client implemented with PyQt5
+- Secure communication using `ssl.wrap_socket`
+- Control/data separation via custom protocol tags:
+  - Commands sent as: `CTRL:<command>`
+  - Responses received as: `DATA:<output>`
+- Persistent working directory support for `cd` commands
+- Real-time server log display in the GUI
+- No third-party socket libraries required — uses only `socket`, `threading`, `ssl`, and `subprocess`
+
+---
+
+## File Descriptions
+
+| File           | Description                                                |
+|----------------|------------------------------------------------------------|
+| `client.py`     | Secure GUI client for sending shell commands              |
+| `gui_server.py` | Server GUI to initialize and monitor secure connections   |
+| `server.py`     | Core server logic: sockets, threading, command execution  |
+| `cert.pem`      | SSL certificate (self-signed)                             |
+| `key.pem`       | SSL private key                                           |
+
+---
+
+## Security Notes
+
+- Uses self-signed SSL certificates for encryption.
+- For production use, replace with certificates from a trusted Certificate Authority (CA).
+- Shell commands are executed using `subprocess` and run in the server’s environment.
+
+---
+
+## Requirements
+
+- Python 3.x
+- PyQt5
+
+Install dependencies with:
+
+```bash
+pip install pyqt5
+```
+
+---
+
+## License
+
+This project is open-source and available under the MIT License.
