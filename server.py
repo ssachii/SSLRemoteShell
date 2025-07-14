@@ -5,7 +5,7 @@ import os
 import ssl
 
 class SocketServer:
-    def __init__(self, host='127.0.0.1', port=12345, message_handler=None):
+    def __init__(self, host='', port=12345, message_handler=None): #insert host ip
         self.host = host
         self.port = port
         self.server_socket = None
