@@ -14,7 +14,7 @@ class ClientGUI(QWidget):
 
         # Host and Port Input
         host_layout = QHBoxLayout()
-        self.host_input = QLineEdit("127.0.0.1")
+        self.host_input = QLineEdit("") #insert host ip
         self.port_input = QLineEdit("12345")
         host_layout.addWidget(QLabel("Host:"))
         host_layout.addWidget(self.host_input)
